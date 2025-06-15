@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BLESSED JUNIOR ACADEMY | Gulu, Uganda</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <style>
+    :root {
+      --primary: #0d47a1;
+      --secondary: #ffc107;
+      --accent: #4caf50;
+      --light: #f8f9fa;
+      --dark: #212529;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fb;
+      color: #333;
+    }
+    
+    .navbar {
+      background: linear-gradient(135deg, var(--primary), #1a56b5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: white !important;
+      display: flex;
+      align-items: center;
+    }
+    
+    .navbar-brand img {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      margin-right: 12px;
+      border: 2px solid var(--secondary);
+    }
+    
+    .nav-link {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-weight: 500;
+      margin: 0 8px;
+      padding: 8px 15px !important;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: white !important;
+      transform: translateY(-2px);
+    }
+    
+    .nav-link.active {
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1601315481546-b3273e92a851') center center/cover no-repeat;
+      color: white;
+      padding: 150px 15px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .hero-section h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      animation: fadeInDown 1s ease;
+    }
+    
+    .hero-section p {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero-btn {
+      background: var(--secondary);
+      color: var(--dark);
+      font-weight: 600;
+      padding: 12px 35px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease;
+    }
+    
+    .hero-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      background: #ffca28;
+    }
+    
+    .section-title {
+      position: relative;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 3rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .highlight-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      height: 100%;
+      border: none;
+    }
+    
+    .highlight-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .highlight-card img {
+      height: 220px;
+      object-fit: cover;
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .highlight-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .highlight-card .card-body {
+      padding: 25px;
+    }
+    
+    .highlight-card h5 {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .about-section {
+      background: linear-gradient(to bottom, #ffffff, #f0f4ff);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .about-section:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/absurdity.png');
+      opacity: 0.03;
+      pointer-events: none;
+    }
+    
+    .about-content {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .benefit-list li {
+      padding: 12px 0 12px 40px;
+      position: relative;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    
+    .benefit-list li:before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 12px;
+      color: var(--accent);
+      background: rgba(76, 175, 80, 0.1);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .staff-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      text-align: center;
+      border: none;
+      margin-bottom: 25px;
+    }
+    
+    .staff-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .staff-photo {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    
+    .staff-card .card-body {
+      padding: 25px 20px;
+    }
+    
+    .staff-card h5 {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    
+    .staff-card p {
+      color: #666;
+      font-weight: 500;
+    }
+    
+    .contact-section {
+      background: linear-gradient(135deg, #1a56b5, var(--primary));
+      color: white;
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .contact-section .section-title {
+      color: white;
+    }
+    
+    .contact-section .section-title:after {
+      background: var(--secondary);
+    }
+    
+    .contact-info {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px;
+      height: 100%;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .contact-info h5 {
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .contact-info h5 i {
+      margin-right: 12px;
+      font-size: 1.4rem;
+      color: var(--secondary);
+    }
+    
+    .contact-info p {
+      margin-bottom: 25px;
+      font-size: 1.05rem;
+      opacity: 0.9;
+    }
+    
+    .contact-info a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      color: #ffca28;
+      text-decoration: underline;
+    }
+    
+    .contact-form {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .contact-form .form-control {
+      border: 2px solid #e1e5eb;
+      padding: 12px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-form .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(13, 71, 161, 0.15);
+    }
+    
+    .contact-form textarea.form-control {
+      min-height: 150px;
+    }
+    
+    .contact-form .btn {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      width: 100%;
+      border: none;
+    }
+    
+    .contact-form .btn:hover {
+      background: #1a56b5;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .testimonial-section {
+      padding: 80px 0;
+      background: url('https://www.transparenttextures.com/patterns/cubes.png'), #f8f9fa;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      margin: 15px;
+      position: relative;
+    }
+    
+    .testimonial-card:before {
+      content: '\f10d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      font-size: 3rem;
+      color: rgba(13, 71, 161, 0.1);
+      z-index: 0;
+    }
+    
+    .testimonial-content {
+      position: relative;
+      z-index: 2;
+      font-style: italic;
+      color: #555;
+      margin-bottom: 25px;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .testimonial-author img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      border: 3px solid var(--secondary);
+    }
+    
+    .testimonial-author h6 {
+      font-weight: 700;
+      margin-bottom: 3px;
+      color: var(--primary);
+    }
+    
+    .testimonial-author p {
+      color: #777;
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+    
+    .gallery-section {
+      padding: 80px 0;
+    }
+    
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 25px;
+      height: 250px;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 71, 161, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    
+    .gallery-overlay i {
+      color: white;
+      font-size: 3rem;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), #1a56b5);
+      padding: 80px 0;
+      text-align: center;
+      color: white;
+    }
+    
+    .cta-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+    }
+    
+    .cta-btn {
+      background: var(--secondary);
+      color: var(--dark);
+      font-weight: 700;
+      padding: 15px 45px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      color: var(--dark);
+      background: #ffca28;
+    }
+    
+    footer {
+      background: #0a3a8a;
+      color: rgba(255, 255, 255, 0.85);
+      padding: 60px 0 20px;
+    }
+    
+    .footer-title {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 1.4rem;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    
+    .footer-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary);
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      transform: translateX(5px);
+    }
+    
+    .footer-contact p {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .footer-contact i {
+      margin-right: 15px;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      min-width: 20px;
+      margin-top: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--secondary);
+      color: var(--dark);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.95rem;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .hero-section {
+        padding: 100px 15px;
+      }
+      
+      .hero-section h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero-section p {
+        font-size: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+      
+      .hero-section h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hero-section p {
+        font-size: 1.3rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .staff-photo {
+        height: 220px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-section {
+        padding: 80px 15px;
+      }
+      
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+      
+      .hero-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="badge.jpg" alt="logo">
+      BLESSED JUNIOR ACADEMY
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+        <li class="nav-item"><a class="nav-link" href="Fees Structure.html">Fees Structure</a></li>
+        <li class="nav-item"><a class="nav-link" href="admission.html">Apply Now</a></li>
+        <li class="nav-item"><a class="nav-link" href="#management">Management</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>WELCOME TO BLESSED JUNIOR ACADEMY</h1>
+    <p>Empowering Children Through Knowledge, Character & Excellence</p>
+    <a href="admission.html" class="btn hero-btn">Apply for Admission <i class="fas fa-arrow-right ms-2"></i></a>
+  </div>
+</section>
+
+<!-- Highlights -->
+<section class="container my-5 py-5">
+  <h2 class="section-title">Our Highlights</h2>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="highlight-card">
+        <img src="crown.jpg" alt="School Environment">
+        <div class="card-body">
+          <h5>Top Class Graduation Day</h5>
+          <p>A serene and safe learning space that nurtures creativity and intellectual growth for all learners.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="highlight-card">
+        <img src="class.jpg" alt="Classrooms">
+        <div class="card-body">
+          <h5>Modern Classrooms</h5>
+          <p>Spacious, well-equipped and digital-ready classrooms designed for 21st century learning.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="highlight-card">
+        <img src="pupils.jpg" alt="Students">
+        <div class="card-body">
+          <h5>Happy Learners</h5>
+          <p>We instill discipline, confidence, and academic excellence in a supportive community environment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Us -->
+<section class="about-section py-5" id="about">
+  <div class="container">
+    <h2 class="section-title">About Our Academy</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="about-content">
+          <div class="row">
+            <div class="col-lg-6">
+              <h3 class="mb-4">Our Mission</h3>
+              <p class="lead">To provide affordable, quality education that empowers children to become responsible, ethical, and productive members of society.</p>
+              
+              <h3 class="mt-5 mb-4">Our Vision</h3>
+              <p class="lead">To be a leading institution in holistic child development through innovative education and character formation.</p>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="mb-4">Why Choose Us?</h3>
+              <ul class="benefit-list">
+                <li>Qualified and passionate teaching staff</li>
+                <li>Christian-based values and character building</li>
+                <li>Engaging co-curricular activities</li>
+                <li>Affordable school fees and scholarship programs</li>
+                <li>Modern learning resources and technology</li>
+                <li>Safe and nurturing environment</li>
+                <li>Parent-teacher collaboration</li>
+                <li>Focus on individual student development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Academic Programs -->
+<section class="container py-5" id="programs">
+  <h2 class="section-title">Academic Programs</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="info-card text-center p-4 h-100">
+        <div class="mb-4">
+          <i class="fas fa-baby fa-3x text-primary"></i>
+        </div>
+        <h4>Nursery Section</h4>
+        <p>For ages 3-5 years. Our play-based curriculum focuses on early development, socialization, and foundational skills.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="info-card text-center p-4 h-100">
+        <div class="mb-4">
+          <i class="fas fa-pencil-alt fa-3x text-primary"></i>
+        </div>
+        <h4>Lower Primary</h4>
+        <p>Grades 1-3. Building strong literacy and numeracy skills while encouraging curiosity and exploration.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="info-card text-center p-4 h-100">
+        <div class="mb-4">
+          <i class="fas fa-book-open fa-3x text-primary"></i>
+        </div>
+        <h4>Upper Primary</h4>
+        <p>Grades 4-7. Comprehensive curriculum preparing students for secondary education with academic excellence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- School Management -->
+<section class="container py-5" id="management">
+  <h2 class="section-title">School Management</h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6">
+      <div class="staff-card">
+        <img src="director.jpg"  alt="Director" class="staff-photo" height="200|" width="200">
+        <div class="card-body">
+          <h5>Magada Samuel</h5>
+          <p><strong>Director</strong></p>
+          <p class="text-muted mt-2">Education Leadership & Management</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="staff-card">
+        <img src="lyn.jpg" alt="Head Teacher" class="staff-photo" >
+        <div class="card-body">
+          <h5>Nyamata Linet</h5>
+          <p><strong>Head Teacher</strong></p>
+          <p class="text-muted mt-2">Curriculum Development Specialist</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="staff-card">
+        <img src="staff.jpg" alt="Staff" class="staff-photo">
+        <div class="card-body">
+          <h5>Our Dedicated Staff</h5>
+          <p><strong>Teachers & Administration</strong></p>
+          <p class="text-muted mt-2">Qualified professionals committed to student success</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonial-section">
+  <div class="container">
+    <h2 class="section-title">What Parents Say</h2>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            "Blessed Junior Academy has transformed my child. The teachers are caring and attentive, and the academic progress has been remarkable."
+          </div>
+          <div class="testimonial-author">
+            <img src="parent2.jpg"Parent">
+            <div>
+              <h6>Kasule Saul.</h6>
+              <p>Parent of Grade 3 Student</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            "The values-based education combined with academic excellence makes this school stand out. My children love going to school every day."
+          </div>
+          <div class="testimonial-author">
+            <img src="parent.jpg" alt="Parent">
+            <div>
+              <h6>Tumwesigye P.</h6>
+              <p>Parent of Two Students</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            "As an educator myself, I'm impressed with the teaching methodology and the holistic approach to child development at Blessed Junior Academy."
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Parent">
+            <div>
+              <h6>Grace M.</h6>
+              <p>Parent & Education Specialist</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <h2 class="section-title">School Gallery</h2>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="team.jpg" alt="Classroom">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1" alt="Students">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a" alt="Library">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f" alt="Sports">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf" alt="Science Lab">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94" alt="Art Class">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1543269865-0a740d43b90c" alt="Performance">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="Graduation">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="contact-info">
+          <h5><i class="fas fa-map-marker-alt"></i> School Address</h5>
+          <p><strong>Location:</strong> Gulu City, Uganda</p>
+          
+          <h5><i class="fas fa-envelope"></i> Email</h5>
+          <p><a href="mailto:magadasamuel25@gmail.com">magadasamuel25@gmail.com</a></p>
+          
+          <h5><i class="fas fa-phone"></i> Phone Numbers</h5>
+          <p>+256 746782538</p>
+          <p>+256 703330200</p>
+          
+          <h5><i class="fas fa-clock"></i> Office Hours</h5>
+          <p>Monday - Friday: 7:30 AM - 5:00 PM</p>
+          <p>Saturday: 9:00 AM - 1:00 PM</p>
+          
+          <h5><i class="fas fa-hashtag"></i> Social Media</h5>
+          <p><a href="#" target="_blank">facebook.com/blessedjunioracademy</a></p>
+          
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-7">
+        <div class="contact-form">
+          <h5 class="mb-4">Send Us a Message</h5>
+          <form action="send_contact.php" method="POST">
+            <div class="mb-3">
+              <input type="text" class="form-control" name="name" placeholder="Your Full Name" required />
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" name="email" placeholder="Your Email Address" required />
+            </div>
+            <div class="mb-3">
+              <input type="tel" class="form-control" name="phone" placeholder="Phone Number" />
+            </div>
+            <div class="mb-3">
+              <select class="form-control" name="subject">
+                <option value="">Select Subject</option>
+                <option value="Admission">Admission Inquiry</option>
+                <option value="Fees">Fees Structure</option>
+                <option value="General">General Inquiry</option>
+                <option value="Feedback">Feedback/Suggestion</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-paper-plane me-2"></i> Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="cta-title">Enroll Your Child Today</h2>
+    <p class="cta-subtitle">Give your child the gift of quality education in a nurturing Christian environment that fosters academic excellence and character development.</p>
+    <a href="admission.html" class="cta-btn">Apply for Admission <i class="fas fa-arrow-right ms-2"></i></a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <h4 class="footer-title">About Our Academy</h4>
+        <p>Blessed Junior Academy is a child-centered learning institution committed to providing affordable, quality education to children from nursery to upper primary level in Gulu, Uganda.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="col-lg-2 col-md-4 mb-4">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="Fees Structure.html">Fees Structure</a></li>
+          <li><a href="admission.html">Apply Now</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-md-4 mb-4">
+        <h4 class="footer-title">Contact Info</h4>
+        <div class="footer-contact">
+          <p><i class="fas fa-map-marker-alt"></i> Gulu City, Uganda</p>
+          <p><i class="fas fa-phone"></i> +256 746782538</p>
+          <p><i class="fas fa-envelope"></i> magadasamuel25@gmail.com</p>
+          <p><i class="fas fa-clock"></i> Mon-Fri: 7:30AM - 5:00PM</p>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4 mb-4">
+        <h4 class="footer-title">Newsletter</h4>
+        <p>Subscribe to our newsletter for updates and school news.</p>
+        <form>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Your Email" aria-label="Your Email">
+            <button class="btn btn-warning" type="button"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 Blessed Junior Academy. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

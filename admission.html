@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admission Form - Blessed Junior Academy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0d47a1;
+      --secondary: #ffc107;
+      --accent: #4caf50;
+      --light: #f8f9fa;
+      --dark: #212529;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e6f0ff, #f5f9ff);
+      color: #333;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, var(--primary), #1a56b5);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    
+    .logo {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--secondary);
+      margin-right: 15px;
+      object-fit: cover;
+    }
+    
+    .school-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 0;
+    }
+    
+    .form-section {
+      padding: 40px 20px;
+    }
+    
+    .form-container {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .form-container:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: var(--primary);
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+    
+    .form-container:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      background: var(--secondary);
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
+    }
+    
+    .section-title {
+      color: var(--primary);
+      margin-bottom: 30px;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+      text-align: center;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .form-step {
+      display: none;
+    }
+    
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: #444;
+    }
+    
+    .form-control, .form-select {
+      border: 2px solid #e1e5eb;
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(13, 71, 161, 0.15);
+    }
+    
+    .progress-container {
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .progress {
+      height: 10px;
+      border-radius: 5px;
+      background: #e9ecef;
+      overflow: visible;
+    }
+    
+    .progress-bar {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      transition: width 0.5s ease;
+    }
+    
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    
+    .step {
+      position: relative;
+      text-align: center;
+      flex: 1;
+    }
+    
+    .step:before {
+      content: '';
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #e9ecef;
+      display: block;
+      margin: 0 auto 8px;
+      line-height: 30px;
+      font-weight: bold;
+      color: white;
+      z-index: 2;
+      position: relative;
+    }
+    
+    .step.active:before {
+      background: var(--primary);
+    }
+    
+    .step.completed:before {
+      background: var(--accent);
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+    }
+    
+    .step:nth-child(1):before { content: '1'; }
+    .step:nth-child(2):before { content: '2'; }
+    .step:nth-child(3):before { content: '3'; }
+    .step:nth-child(4):before { content: '4'; }
+    .step:nth-child(5):before { content: '5'; }
+    
+    .step-label {
+      font-size: 0.9rem;
+      color: #6c757d;
+      font-weight: 500;
+    }
+    
+    .step.active .step-label {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .btn-prev {
+      background: #6c757d;
+      color: white;
+    }
+    
+    .btn-next, .btn-submit {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: white;
+      box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-next:hover, .btn-submit:hover {
+      background: linear-gradient(135deg, #ffca28, #1a56b5);
+    }
+    
+    .required:after {
+      content: " *";
+      color: #dc3545;
+    }
+    
+    .upload-area {
+      border: 2px dashed #ced4da;
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 20px;
+      background: #f8f9fa;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .upload-area:hover {
+      border-color: var(--primary);
+      background: #e6f0ff;
+    }
+    
+    .upload-icon {
+      font-size: 3rem;
+      color: #6c757d;
+      margin-bottom: 15px;
+    }
+    
+    .file-info {
+      background: #e9ecef;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: none;
+    }
+    
+    .review-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .review-card h6 {
+      color: var(--primary);
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .confirmation {
+      text-align: center;
+      padding: 40px 0;
+      display: none;
+    }
+    
+    .confirmation-icon {
+      font-size: 5rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      animation: bounce 1s ease;
+    }
+    
+    .footer {
+      background: var(--primary);
+      color: rgba(255, 255, 255, 0.85);
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-30px);}
+      60% {transform: translateY(-15px);}
+    }
+    
+    @media (max-width: 768px) {
+      .form-container {
+        padding: 25px;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .step-label {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="logo-container">
+      <img src="https://via.placeholder.com/80" alt="School Logo" class="logo">
+      <h1 class="school-name">Blessed Junior Academy</h1>
+    </div>
+    <p class="text-center mb-0">Admission Application Form</p>
+  </div>
+</header>
+
+<!-- Admission Form Section -->
+<section class="form-section">
+  <div class="container">
+    <div class="form-container">
+      <h2 class="section-title">Student Admission Application</h2>
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress-steps">
+          <div class="step active" data-step="1">
+            <span class="step-label">Student Info</span>
+          </div>
+          <div class="step" data-step="2">
+            <span class="step-label">Parent Info</span>
+          </div>
+          <div class="step" data-step="3">
+            <span class="step-label">Background</span>
+          </div>
+          <div class="step" data-step="4">
+            <span class="step-label">Documents</span>
+          </div>
+          <div class="step" data-step="5">
+            <span class="step-label">Review</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Confirmation Message -->
+      <div class="confirmation" id="confirmation">
+        <div class="confirmation-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>Application Submitted Successfully!</h3>
+        <p>Thank you for applying to Blessed Junior Academy. We'll review your application and contact you soon.</p>
+        <a href="index.html" class="btn btn-primary mt-3">Return to Homepage</a>
+      </div>
+      
+      <!-- Form Steps -->
+      <form id="admissionForm" class="needs-validation" novalidate>
+        <!-- Step 1: Student Information -->
+        <div class="form-step active" id="step1">
+          <h4 class="mb-4"><i class="fas fa-user-graduate me-2"></i> Student Information</h4>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label required">First Name</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" required>
+            </div>
+            <div class="col-md-6">
+              <label for="lastName" class="form-label required">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" required>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="dob" class="form-label required">Date of Birth</label>
+              <input type="date" class="form-control" id="dob" name="dob" required>
+            </div>
+            <div class="col-md-6">
+              <label for="gender" class="form-label required">Gender</label>
+              <select class="form-select" id="gender" name="gender" required>
+                <option selected disabled value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="nationality" class="form-label required">Nationality</label>
+              <input type="text" class="form-control" id="nationality" name="nationality" placeholder="e.g., Ugandan" required>
+            </div>
+            <div class="col-md-6">
+              <label for="language" class="form-label required">First Language</label>
+              <input type="text" class="form-control" id="language" name="language" placeholder="e.g., English" required>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="address" class="form-label required">Residential Address</label>
+            <textarea class="form-control" id="address" name="address" rows="2" required></textarea>
+          </div>
+        </div>
+        
+        <!-- Step 2: Parent/Guardian Information -->
+        <div class="form-step" id="step2">
+          <h4 class="mb-4"><i class="fas fa-users me-2"></i> Parent/Guardian Information</h4>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="parentName" class="form-label required">Parent/Guardian Full Name</label>
+              <input type="text" class="form-control" id="parentName" name="parentName" required>
+            </div>
+            <div class="col-md-6">
+              <label for="relationship" class="form-label required">Relationship to Student</label>
+              <select class="form-select" id="relationship" name="relationship" required>
+                <option selected disabled value="">Select Relationship</option>
+                <option>Father</option>
+                <option>Mother</option>
+                <option>Grandparent</option>
+                <option>Uncle/Aunt</option>
+                <option>Guardian</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="parentEmail" class="form-label required">Email Address</label>
+              <input type="email" class="form-control" id="parentEmail" name="parentEmail" required>
+            </div>
+            <div class="col-md-6">
+              <label for="parentPhone" class="form-label required">Phone Number</label>
+              <input type="tel" class="form-control" id="parentPhone" name="parentPhone" placeholder="+256 XXX XXX XXX" required>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="occupation" class="form-label">Occupation</label>
+              <input type="text" class="form-control" id="occupation" name="occupation">
+            </div>
+            <div class="col-md-6">
+              <label for="emergencyContact" class="form-label required">Emergency Contact</label>
+              <input type="tel" class="form-control" id="emergencyContact" name="emergencyContact" placeholder="+256 XXX XXX XXX" required>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="parentAddress" class="form-label">Parent/Guardian Address (if different)</label>
+            <textarea class="form-control" id="parentAddress" name="parentAddress" rows="2"></textarea>
+          </div>
+        </div>
+        
+        <!-- Step 3: Academic Background -->
+        <div class="form-step" id="step3">
+          <h4 class="mb-4"><i class="fas fa-book-open me-2"></i> Academic Background</h4>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="applyingClass" class="form-label required">Class Applying For</label>
+              <select class="form-select" id="applyingClass" name="applyingClass" required>
+                <option selected disabled value="">Select Class</option>
+                <option>Baby Class</option>
+                <option>Middle Class</option>
+                <option>Top Class</option>
+                <option>Primary One</option>
+                <option>Primary Two</option>
+                <option>Primary Three</option>
+                <option>Primary Four</option>
+                <option>Primary Five</option>
+                <option>Primary Six</option>
+                <option>Primary Seven</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="academicYear" class="form-label required">Academic Year</label>
+              <select class="form-select" id="academicYear" name="academicYear" required>
+                <option selected disabled value="">Select Year</option>
+                <option>2025</option>
+                <option>2026</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="form-label">Previous School Information</label>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="prevSchool" name="prevSchool" placeholder="Previous School Name">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="prevClass" name="prevClass" placeholder="Previous Class">
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="specialNeeds" class="form-label">Special Needs (if any)</label>
+            <textarea class="form-control" id="specialNeeds" name="specialNeeds" rows="3" placeholder="Please describe any special needs, allergies, or medical conditions"></textarea>
+          </div>
+          
+          <div class="mb-3">
+            <label for="additionalInfo" class="form-label">Additional Information</label>
+            <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3" placeholder="Any other information you would like us to know"></textarea>
+          </div>
+        </div>
+        
+        <!-- Step 4: Documents Upload -->
+        <div class="form-step" id="step4">
+          <h4 class="mb-4"><i class="fas fa-file-upload me-2"></i> Required Documents</h4>
+          <p class="text-muted mb-4">Please upload the following documents (PDF, JPG, or PNG files):</p>
+          
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="upload-area" onclick="document.getElementById('birthCert').click()">
+                <div class="upload-icon">
+                  <i class="fas fa-file-medical"></i>
+                </div>
+                <h5>Birth Certificate</h5>
+                <p class="text-muted">Click to upload file</p>
+                <input type="file" id="birthCert" name="birthCert" accept=".pdf,.jpg,.jpeg,.png" hidden required>
+              </div>
+              <div class="file-info" id="birthCertInfo"></div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+              <div class="upload-area" onclick="document.getElementById('passportPhoto').click()">
+                <div class="upload-icon">
+                  <i class="fas fa-camera"></i>
+                </div>
+                <h5>Passport Photo</h5>
+                <p class="text-muted">Click to upload file</p>
+                <input type="file" id="passportPhoto" name="passportPhoto" accept=".jpg,.jpeg,.png" hidden required>
+              </div>
+              <div class="file-info" id="passportPhotoInfo"></div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+              <div class="upload-area" onclick="document.getElementById('previousReport').click()">
+                <div class="upload-icon">
+                  <i class="fas fa-file-alt"></i>
+                </div>
+                <h5>Previous School Report</h5>
+                <p class="text-muted">Click to upload file</p>
+                <input type="file" id="previousReport" name="previousReport" accept=".pdf,.jpg,.jpeg,.png" hidden>
+              </div>
+              <div class="file-info" id="previousReportInfo"></div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+              <div class="upload-area" onclick="document.getElementById('medicalReport').click()">
+                <div class="upload-icon">
+                  <i class="fas fa-heartbeat"></i>
+                </div>
+                <h5>Medical Report</h5>
+                <p class="text-muted">Click to upload file</p>
+                <input type="file" id="medicalReport" name="medicalReport" accept=".pdf,.jpg,.jpeg,.png" hidden>
+              </div>
+              <div class="file-info" id="medicalReportInfo"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 5: Review and Submit -->
+        <div class="form-step" id="step5">
+          <h4 class="mb-4"><i class="fas fa-clipboard-check me-2"></i> Review and Submit</h4>
+          <p class="text-muted mb-4">Please review your information before submitting</p>
+          
+          <div class="review-card">
+            <h6><i class="fas fa-user-graduate me-2"></i> Student Information</h6>
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>Full Name:</strong> <span id="reviewName"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="reviewDob"></span></p>
+                <p><strong>Gender:</strong> <span id="reviewGender"></span></p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Nationality:</strong> <span id="reviewNationality"></span></p>
+                <p><strong>First Language:</strong> <span id="reviewLanguage"></span></p>
+                <p><strong>Address:</strong> <span id="reviewAddress"></span></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="review-card">
+            <h6><i class="fas fa-users me-2"></i> Parent/Guardian Information</h6>
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>Name:</strong> <span id="reviewParentName"></span></p>
+                <p><strong>Relationship:</strong> <span id="reviewRelationship"></span></p>
+                <p><strong>Email:</strong> <span id="reviewParentEmail"></span></p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Phone:</strong> <span id="reviewParentPhone"></span></p>
+                <p><strong>Occupation:</strong> <span id="reviewOccupation"></span></p>
+                <p><strong>Emergency Contact:</strong> <span id="reviewEmergency"></span></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="review-card">
+            <h6><i class="fas fa-book-open me-2"></i> Academic Information</h6>
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>Applying for:</strong> <span id="reviewClass"></span></p>
+                <p><strong>Academic Year:</strong> <span id="reviewYear"></span></p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Previous School:</strong> <span id="reviewPrevSchool"></span></p>
+                <p><strong>Previous Class:</strong> <span id="reviewPrevClass"></span></p>
+              </div>
+            </div>
+            <p><strong>Special Needs:</strong> <span id="reviewSpecialNeeds"></span></p>
+          </div>
+          
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="termsAgree" required>
+            <label class="form-check-label" for="termsAgree">
+              I confirm that all information provided is accurate and agree to the <a href="#" class="text-primary">terms and conditions</a> of Blessed Junior Academy.
+            </label>
+          </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-prev" id="prevBtn" disabled>
+            <i class="fas fa-arrow-left me-2"></i> Previous
+          </button>
+          <button type="button" class="btn btn-next" id="nextBtn">
+            Next <i class="fas fa-arrow-right ms-2"></i>
+          </button>
+          <button type="submit" class="btn btn-submit" id="submitBtn" style="display: none;">
+            <i class="fas fa-paper-plane me-2"></i> Submit Application
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 Blessed Junior Academy. All Rights Reserved.</p>
+    <p class="mb-0">Gulu City, Uganda | +256 746782538 | magadasamuel25@gmail.com</p>
+  </div>
+</footer>
+
+<script>
+  // Form navigation and validation
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('admissionForm');
+    const steps = document.querySelectorAll('.form-step');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const progressBar = document.querySelector('.progress-bar');
+    const progressSteps = document.querySelectorAll('.step');
+    const confirmation = document.getElementById('confirmation');
+    
+    let currentStep = 0;
+    
+    // Initialize form
+    showStep(currentStep);
+    
+    // Next button click
+    nextBtn.addEventListener('click', function() {
+      if (validateStep(currentStep)) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+    
+    // Previous button click
+    prevBtn.addEventListener('click', function() {
+      currentStep--;
+      showStep(currentStep);
+    });
+    
+    // Show current step
+    function showStep(stepIndex) {
+      // Hide all steps
+      steps.forEach(step => step.classList.remove('active'));
+      
+      // Show current step
+      steps[stepIndex].classList.add('active');
+      
+      // Update progress bar
+      const progressPercent = (stepIndex / (steps.length - 1)) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+      
+      // Update progress steps
+      progressSteps.forEach((step, index) => {
+        if (index <= stepIndex) {
+          step.classList.add('completed');
+          step.classList.add('active');
+        } else {
+          step.classList.remove('completed');
+          step.classList.remove('active');
+        }
+      });
+      
+      // Update button visibility
+      prevBtn.disabled = stepIndex === 0;
+      nextBtn.style.display = stepIndex === steps.length - 1 ? 'none' : 'block';
+      submitBtn.style.display = stepIndex === steps.length - 1 ? 'block' : 'none';
+      
+      // Populate review on last step
+      if (stepIndex === steps.length - 1) {
+        populateReview();
+      }
+    }
+    
+    // Validate current step
+    function validateStep(stepIndex) {
+      const currentStep = steps[stepIndex];
+      const inputs = currentStep.querySelectorAll('input, select, textarea');
+      let isValid = true;
+      
+      inputs.forEach(input => {
+        if (input.hasAttribute('required') && !input.value) {
+          input.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          input.classList.remove('is-invalid');
+        }
+      });
+      
+      return isValid;
+    }
+    
+    // File upload handling
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    fileInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          const fileInfo = document.getElementById(`${this.id}Info`);
+          fileInfo.style.display = 'block';
+          fileInfo.innerHTML = `
+            <strong>${this.files[0].name}</strong> (${formatFileSize(this.files[0].size)})
+            <button type="button" class="btn btn-sm btn-outline-danger float-end" onclick="clearFile('${this.id}')">
+              <i class="fas fa-times"></i>
+            </button>
+          `;
+        }
+      });
+    });
+    
+    // Populate review data
+    function populateReview() {
+      document.getElementById('reviewName').textContent = 
+        `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`;
+      document.getElementById('reviewDob').textContent = document.getElementById('dob').value;
+      document.getElementById('reviewGender').textContent = document.getElementById('gender').value;
+      document.getElementById('reviewNationality').textContent = document.getElementById('nationality').value;
+      document.getElementById('reviewLanguage').textContent = document.getElementById('language').value;
+      document.getElementById('reviewAddress').textContent = document.getElementById('address').value;
+      
+      document.getElementById('reviewParentName').textContent = document.getElementById('parentName').value;
+      document.getElementById('reviewRelationship').textContent = document.getElementById('relationship').value;
+      document.getElementById('reviewParentEmail').textContent = document.getElementById('parentEmail').value;
+      document.getElementById('reviewParentPhone').textContent = document.getElementById('parentPhone').value;
+      document.getElementById('reviewOccupation').textContent = document.getElementById('occupation').value || 'N/A';
+      document.getElementById('reviewEmergency').textContent = document.getElementById('emergencyContact').value;
+      
+      document.getElementById('reviewClass').textContent = document.getElementById('applyingClass').value;
+      document.getElementById('reviewYear').textContent = document.getElementById('academicYear').value;
+      document.getElementById('reviewPrevSchool').textContent = document.getElementById('prevSchool').value || 'N/A';
+      document.getElementById('reviewPrevClass').textContent = document.getElementById('prevClass').value || 'N/A';
+      document.getElementById('reviewSpecialNeeds').textContent = 
+        document.getElementById('specialNeeds').value || 'None';
+    }
+    
+    // Form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show confirmation
+      form.style.display = 'none';
+      confirmation.style.display = 'block';
+    });
+  });
+  
+  // Helper functions
+  function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+  
+  function clearFile(inputId) {
+    const input = document.getElementById(inputId);
+    const fileInfo = document.getElementById(`${inputId}Info`);
+    
+    input.value = '';
+    fileInfo.style.display = 'none';
+  }
+</script>
+</body>
+</html>
